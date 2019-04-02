@@ -9,7 +9,6 @@ action "Install dependencies" {
   uses = "bycedric/ci-expo/cli@master"
   runs = "npm"
   args = "ci"
-  needs = ["Master Branch Only"]
 }
 
 action "Login with Expo" {
