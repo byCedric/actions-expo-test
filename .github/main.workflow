@@ -1,9 +1,9 @@
 workflow "Test Expo Action" {
   on = "push"
   resolves = [
-    "Publish to Expo",
     "Install dependencies",
-    "Expo Doctor",
+    "Login with Expo",
+    "Build Android app",
   ]
 }
 
@@ -14,19 +14,13 @@ action "Install dependencies" {
 }
 
 action "Login with Expo" {
-  uses = "bycedric/ci-expo/login@stable"
+  uses = "bycedric/ci-expo/login@master"
   secrets = ["EXPO_USERNAME", "EXPO_PASSWORD"]
   needs = ["Install dependencies"]
   args = "login --username $EXPO_USERNAME --password $EXPO_PASSWORD"
 }
 
-action "Publish to Expo" {
-  uses = "bycedric/ci-expo/publish@stable"
+action "Build Android app" {
+  uses = "bycedric/ci-expo/build-android@build"
   needs = ["Login with Expo"]
-}
-
-action "Expo Doctor" {
-  uses = "bycedric/ci-expo@stable"
-  needs = ["Login with Expo"]
-  args = "doctor"
 }
