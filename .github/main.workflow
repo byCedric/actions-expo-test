@@ -23,7 +23,6 @@ action "Login with Expo" {
 action "Publish to Expo" {
   uses = "bycedric/ci-expo/publish@stable"
   needs = ["Login with Expo"]
-  args = "publish"
 }
 
 action "Expo Doctor" {
