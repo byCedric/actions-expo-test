@@ -25,6 +25,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.bycedric.actions_expo_test",
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
