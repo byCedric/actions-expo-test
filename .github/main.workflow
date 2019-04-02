@@ -1,25 +1,26 @@
-workflow "Build and publish on Expo" {
+workflow "Test Expo Action" {
   on = "push"
   resolves = [
-    "Publish to Expo",
+    "Install dependencies",
+    "Login with Expo",
+    "Build Android app",
   ]
 }
 
 action "Install dependencies" {
-  uses = "bycedric/ci-expo/cli@master"
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   runs = "npm"
   args = "ci"
-  needs = ["Master Branch Only"]
 }
 
 action "Login with Expo" {
   uses = "bycedric/ci-expo/login@master"
   secrets = ["EXPO_USERNAME", "EXPO_PASSWORD"]
+  needs = ["Install dependencies"]
+  args = "login --username $EXPO_USERNAME --password $EXPO_PASSWORD"
 }
 
-action "Publish to Expo" {
-  uses = "docker://bycedric/ci-expo"
-  needs = ["Login with Expo", "Install dependencies"]
-  secrets = ["EXPO_USERNAME", "EXPO_PASSWORD"]
-  runs = "expo publish"
+action "Build Android app" {
+  uses = "bycedric/ci-expo/build-web@build"
+  needs = ["Login with Expo"]
 }
