@@ -27,5 +27,5 @@ action "Publish to Expo" {
 
 action "bycedric/ci-expo/cli@master" {
   uses = "bycedric/ci-expo/cli@master"
-  runs = "sysctl --all"
+  runs = "sysctl -a"
 }
