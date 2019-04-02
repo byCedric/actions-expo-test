@@ -1,8 +1,6 @@
 workflow "Build and publish on Expo" {
   on = "push"
-  resolves = [
-    "Publish to Expo",
-  ]
+  resolves = ["Publish to Expo"]
 }
 
 action "Install dependencies" {
