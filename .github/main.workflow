@@ -2,7 +2,8 @@ workflow "Test Expo Action" {
   on = "push"
   resolves = [
     "Publish to Expo",
-    "Run Expo doctor",
+    "Install dependencies",
+    "Expo Doctor",
   ]
 }
 
@@ -25,7 +26,8 @@ action "Publish to Expo" {
   args = "publish"
 }
 
-action "Run Expo doctor" {
+action "Expo Doctor" {
   uses = "bycedric/ci-expo@stable"
+  needs = ["Login with Expo"]
   args = "doctor"
 }
