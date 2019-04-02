@@ -21,6 +21,6 @@ action "Login with Expo" {
 }
 
 action "Build Android app" {
-  uses = "bycedric/ci-expo/build-android@build"
+  uses = "bycedric/ci-expo/build-web@build"
   needs = ["Login with Expo"]
 }
