@@ -1,26 +1,8 @@
 workflow "Build and publish on Expo" {
   on = "push"
   resolves = [
-    "Master Branch Only",
     "Publish to Expo",
   ]
-}
-
-action "Build" {
-  uses = "actions/npm@master"
-  args = "install"
-}
-
-action "Test" {
-  needs = ["Build"]
-  uses = "actions/npm@master"
-  args = "test"
-}
-
-action "Master Branch Only" {
-  uses = "actions/bin/filter@master"
-  args = "branch master"
-  needs = ["Test"]
 }
 
 action "Install dependencies" {
