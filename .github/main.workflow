@@ -12,5 +12,5 @@ action "Install dependencies" {
 action "Publish to Expo" {
   uses = "bycedric/ci-expo/cli@master"
   needs = ["Install dependencies"]
-  runs = "sh -c \"expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD && expo publish\""
+  runs = "sh -c \"expo login -u='$EXPO_USERNAME' -p='$EXPO_PASSWORD' && expo publish\""
 }
