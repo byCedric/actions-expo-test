@@ -11,11 +11,12 @@ action "Install dependencies" {
 
 action "Login with Expo" {
   uses = "bycedric/ci-expo/login@master"
+  needs = ["Install dependencies"]
   secrets = ["EXPO_USERNAME", "EXPO_PASSWORD"]
 }
 
 action "Publish to Expo" {
   uses = "bycedric/ci-expo/cli@master"
-  needs = ["Install dependencies", "Login with Expo"]
+  needs = ["Login with Expo"]
   runs = "publish"
 }
