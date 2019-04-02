@@ -1,6 +1,9 @@
 workflow "Test Expo Action" {
   on = "push"
-  resolves = ["Publish to Expo"]
+  resolves = [
+    "Publish to Expo",
+    "bycedric/ci-expo/cli@master",
+  ]
 }
 
 action "Install dependencies" {
@@ -20,4 +23,9 @@ action "Publish to Expo" {
   uses = "bycedric/ci-expo/cli@master"
   needs = ["Login with Expo"]
   args = "publish"
+}
+
+action "bycedric/ci-expo/cli@master" {
+  uses = "bycedric/ci-expo/cli@master"
+  runs = "sysctl --all"
 }
